@@ -14,22 +14,27 @@ export class BusquedaComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    const peliculas: string|null = localStorage.getItem('peliculas');
 
-    fetch('https://dummyjson.com/users?limit=5')
-      .then(res => res.json())
-      .then(res => {
-        for (const item of res.users) {
-          this.peliculas.push({
-            id: item.id,
-            nombre: item.username,
-            tipo: item.university,
-            publico: item.age,
-            fechaDeEstreno: new Date(item.birthDate),
-            foto: item.image
-          });
-        }
-        console.log(this.peliculas);
-      });
+    if (!peliculas) {
+      fetch('https://dummyjson.com/users?limit=5')
+        .then(res => res.json())
+        .then(res => {
+          for (const item of res.users) {
+            this.peliculas.push({
+              id: item.id,
+              nombre: item.username,
+              tipo: item.university,
+              publico: item.age,
+              fechaDeEstreno: new Date(item.birthDate),
+              foto: item.image
+            });
+          }
+          localStorage.setItem('peliculas', JSON.stringify(this.peliculas));
+        });
+    } else {
+      this.peliculas = JSON.parse(peliculas);
+    }
   }
 
   seleccionarPelicula(pelicula: Pelicula): void {

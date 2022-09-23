@@ -10,6 +10,8 @@ import { ActorListadoComponent } from './components/actor-listado/actor-listado.
 import { PeliculaListadoComponent } from './components/pelicula-listado/pelicula-listado.component';
 import { TablaPeliculaComponent } from './components/tabla-pelicula/tabla-pelicula.component';
 import { DetallePeliculaComponent } from './components/detalle-pelicula/detalle-pelicula.component';
+import { TablaPaisesComponent } from './components/tabla-paises/tabla-paises.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,13 @@ import { DetallePeliculaComponent } from './components/detalle-pelicula/detalle-
     ActorListadoComponent,
     PeliculaListadoComponent,
     TablaPeliculaComponent,
-    DetallePeliculaComponent
+    DetallePeliculaComponent,
+    TablaPaisesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

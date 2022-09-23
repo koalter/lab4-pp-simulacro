@@ -1,1 +1,35 @@
-<p>actor-alta works!</p>
+<div class="bg-light">
+    <div class="d-flex container">
+        <form class="form col-md-7 m-4" [formGroup]="formulario" (ngSubmit)="altaActor()">
+            <h2>Alta Actor</h2>
+            <div class="row h-25">
+                <div class="form-group col-md-6">
+                    <label for="nombre">Nombre</label>
+                    <input class="form-control" type="text" formControlName="nombre">
+                    <small class="text-danger" *ngIf="formulario.controls['nombre'].touched && formulario.controls['nombre'].errors?.['required']">El nombre es requerido</small>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="apellido">Apellido</label>
+                    <input class="form-control" type="text" formControlName="apellido">
+                    <small class="text-danger" *ngIf="formulario.controls['apellido'].touched && formulario.controls['apellido'].errors?.['required']">El apellido es requerido</small>
+                </div>
+            </div>
+            <div class="row h-25">
+                <div class="form-group">
+                    <label for="fecha">Fecha de nacimiento</label>
+                    <input class="form-control" type="date" formControlName="fecha">
+                    <small class="text-danger" *ngIf="formulario.controls['fecha'].touched && formulario.controls['fecha'].errors?.['required']">La fecha es requerida</small>
+                </div>
+            </div>
+            <div class="row h-25">
+                <div class="form-group">
+                    <label for="pais">País de origen</label>
+                    <input class="form-control bg-light" type="text" formControlName="pais" readonly>
+                    <small class="text-danger" *ngIf="formulario.controls['pais'].touched && formulario.controls['pais'].errors?.['required']">El país es requerido</small>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary mb-4" value="Alta actor" [disabled]="!formulario.valid">
+        </form>
+        <tabla-paises (seleccion)="seleccionarPais($event)"></tabla-paises>
+    </div>
+</div>
