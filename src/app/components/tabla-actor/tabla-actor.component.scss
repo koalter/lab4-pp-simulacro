@@ -1,0 +1,23 @@
+.overflow {
+    max-height: 20em;
+    overflow: auto;
+}
+
+td, th {
+    width: 10em;
+    height: 4em;
+}
+
+tbody {
+    tr:nth-child(odd) {
+        background-color: var(--bs-light);
+    }
+    
+    tr:nth-child(even) {
+        background-color: var(--bs-gray-400);
+    }
+}
+
+img {
+    width: 50%;
+}

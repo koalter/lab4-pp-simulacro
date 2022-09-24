@@ -1,14 +1,16 @@
-<table class="border">
-    <thead class="border">
-        <th class="p-4 fw-normal fs-4" colspan="3">Actores</th>
-    </thead>
-    <div class="table table-hover overflow text-center">
-        <tbody>
-            <tr class="border" *ngFor="let actor of actores" (click)="seleccionarActor(actor.nombre + ' ' + actor.apellido)">
-                <td><img [src]="actor.nacionalidad" alt="{{ actor.nacionalidad }}"></td>
-                <td>{{ actor.apellido }}</td>
-                <td>{{ actor.nombre }}</td>
-            </tr>
-        </tbody>
+<div class="container m-4">
+    <div class="border">
+        <h3 class="p-4 fw-normal fs-4" colspan="2">Actores</h3>
     </div>
-</table>
+    <div class="overflow border">
+        <table class="table table-hover overflow text-center">
+            <tbody>
+                <tr class="border" *ngFor="let actor of actores" (click)="seleccionarActor(actor.nombre + ' ' + actor.apellido)">
+                    <!-- <td><img [src]="actor.nacionalidad" alt="{{ actor.nacionalidad }}"></td> -->
+                    <td>{{ actor.apellido }}</td>
+                    <td>{{ actor.nombre }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

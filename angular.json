@@ -100,6 +100,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "lab4-pp-simulacro:build:production",
+            "firebaseProject": "lcea-pp-2022",
+            "firebaseHostingSite": "lcea-pp-2022"
+          }
         }
       }
     }

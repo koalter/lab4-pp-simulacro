@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lcea-pp-2022": {
+      "hosting": {
+        "lab4-pp-simulacro": [
+          "lcea-pp-2022"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "lcea-pp-2022"
+  }
+}

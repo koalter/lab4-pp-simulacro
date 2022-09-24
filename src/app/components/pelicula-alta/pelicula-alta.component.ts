@@ -16,14 +16,15 @@ export class PeliculaAltaComponent implements OnInit {
       'nombre': ['', Validators.required],
       'tipo': ['', Validators.required],
       'fecha': ['', Validators.required],
-      'actor': ['', Validators.required]
+      'actor': ['', Validators.required],
+      'publico': ['', Validators.required]
     })
   }
 
   ngOnInit(): void {
   }
 
-  seleccionarActor(actor: string) {
+  seleccionarActor(actor: string): void {
     this.formulario.controls['actor'].setValue(actor);
   }
 
@@ -31,8 +32,30 @@ export class PeliculaAltaComponent implements OnInit {
     const pelicula: Pelicula = new Pelicula(this.formulario.controls['nombre'].value,
       this.formulario.controls['tipo'].value,
       this.formulario.controls['fecha'].value,
-      0,
+      this.formulario.controls['publico'].value,
       this.formulario.controls['actor'].value);
-    console.log(pelicula);
+    
+    this.guardarPelicula(pelicula);
+  }
+
+  private guardarPelicula(pelicula: Pelicula) {
+    let peliculas = localStorage.getItem('peliculas');
+    const listadoAGuardar: Pelicula[] = [];
+
+    if (peliculas) {
+      listadoAGuardar.push(...JSON.parse(peliculas));
+    }
+    
+    listadoAGuardar.push(pelicula);
+    localStorage.setItem('peliculas', JSON.stringify(listadoAGuardar));
+    
+    this.formulario.reset();
+  }
+
+  validarNumero(ev: KeyboardEvent): void {
+    const key: number = parseInt(ev.key);
+    if (isNaN(key) && !(ev.key === 'Backspace' || ev.key === 'Delete' || ev.key === 'Tab' || ev.key.startsWith('Arrow'))) {
+      ev.preventDefault();
+    }
   }
 }

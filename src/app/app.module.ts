@@ -13,6 +13,10 @@ import { DetallePeliculaComponent } from './components/detalle-pelicula/detalle-
 import { TablaPaisesComponent } from './components/tabla-paises/tabla-paises.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TablaActorComponent } from './components/tabla-actor/tabla-actor.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,10 @@ import { TablaActorComponent } from './components/tabla-actor/tabla-actor.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]

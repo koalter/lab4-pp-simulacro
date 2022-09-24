@@ -1,14 +1,16 @@
-<table class="border">
-    <thead class="border">
-        <th class="p-4 fw-normal fs-4" colspan="3">Países</th>
-    </thead>
-    <div class="table table-hover overflow text-center">
-        <tbody>
-            <tr class="border" *ngFor="let pais of paises" (click)="seleccionarPais(pais.nombre)">
-                <td><img [src]="pais.bandera" alt="bandera de {{ pais.nombre }}"></td>
-                <td>{{ pais.nombre }}</td>
-                <td>{{ pais.codigo }}</td>
-            </tr>
-        </tbody>
+<div class="container m-4">
+    <div class="border">
+        <h3 class="p-4 fw-normal fs-4" colspan="3">Países</h3>
     </div>
-</table>
+    <div class="overflow border">
+        <table class="table table-hover text-center">
+            <tbody>
+                <tr class="border" *ngFor="let pais of paises" (click)="seleccionarPais(pais.nombre)">
+                    <td><img [src]="pais.bandera" alt="bandera de {{ pais.nombre }}"></td>
+                    <td>{{ pais.nombre }}</td>
+                    <td>{{ pais.codigo }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
