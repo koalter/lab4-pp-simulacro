@@ -1,0 +1,14 @@
+<table class="border">
+    <thead class="border">
+        <th class="p-4 fw-normal fs-4" colspan="3">Actores</th>
+    </thead>
+    <div class="table table-hover overflow text-center">
+        <tbody>
+            <tr class="border" *ngFor="let actor of actores" (click)="seleccionarActor(actor.nombre + ' ' + actor.apellido)">
+                <td><img [src]="actor.nacionalidad" alt="{{ actor.nacionalidad }}"></td>
+                <td>{{ actor.apellido }}</td>
+                <td>{{ actor.nombre }}</td>
+            </tr>
+        </tbody>
+    </div>
+</table>

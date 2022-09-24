@@ -12,6 +12,7 @@ import { TablaPeliculaComponent } from './components/tabla-pelicula/tabla-pelicu
 import { DetallePeliculaComponent } from './components/detalle-pelicula/detalle-pelicula.component';
 import { TablaPaisesComponent } from './components/tabla-paises/tabla-paises.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TablaActorComponent } from './components/tabla-actor/tabla-actor.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PeliculaListadoComponent,
     TablaPeliculaComponent,
     DetallePeliculaComponent,
-    TablaPaisesComponent
+    TablaPaisesComponent,
+    TablaActorComponent
   ],
   imports: [
     BrowserModule,

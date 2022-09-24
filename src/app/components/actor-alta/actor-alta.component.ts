@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Actor } from 'src/app/models/actor';
+import { Actor } from '../../models/Actor';
 
 @Component({
   selector: 'actor-alta',
@@ -32,6 +32,21 @@ export class ActorAltaComponent implements OnInit {
       this.formulario.controls['apellido'].value,
       this.formulario.controls['fecha'].value,
       this.formulario.controls['pais'].value);
-    console.log(actor);
+
+    this.guardarActor(actor);
+  }
+
+  private guardarActor(actor: Actor) {
+    let actores = localStorage.getItem('actores');
+    const listadoAGuardar: Actor[] = [];
+
+    if (actores) {
+      listadoAGuardar.push(...JSON.parse(actores));
+    }
+    
+    listadoAGuardar.push(actor);
+    localStorage.setItem('actores', JSON.stringify(listadoAGuardar));
+    
+    this.formulario.reset();
   }
 }

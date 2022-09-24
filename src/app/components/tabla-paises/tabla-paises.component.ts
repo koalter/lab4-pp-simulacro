@@ -8,10 +8,13 @@ import { Pais } from '../../models/Pais';
 })
 export class TablaPaisesComponent implements OnInit {
 
-  @Output() seleccion: EventEmitter<string> = new EventEmitter<string>();
-  paises: Array<Pais> = [];
+  @Output() seleccion: EventEmitter<string>;
+  paises: Pais[];
 
-  constructor() { }
+  constructor() { 
+    this.seleccion = new EventEmitter<string>();
+    this.paises = [];
+  }
 
   ngOnInit(): void {
     const paises: string|null = localStorage.getItem('paises');
