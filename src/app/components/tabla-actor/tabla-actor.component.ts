@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Actor } from 'src/app/models/Actor';
+import { ActorService } from 'src/app/shared/actor.service';
 
 @Component({
   selector: 'tabla-actor',
@@ -12,21 +13,25 @@ export class TablaActorComponent implements OnInit {
   actores: Actor[];
 
 
-  constructor() { 
+  constructor(private actorService : ActorService) { 
     this.seleccion = new EventEmitter<string>();
     this.actores = [];
   }
 
   ngOnInit(): void {
-    const actores: string|null = localStorage.getItem('actores');
-    if (actores) {
-      const listado: Actor[] = JSON.parse(actores);
-      this.actores = listado.sort((a, b) => {
-        if (a.apellido < b.apellido) return -1;
-        else if (a.apellido > b.apellido) return 1;
-        else return 0;
-      });
-    }
+
+    this.actorService.getActores().then(res => {
+      this.actores = res;
+      localStorage.setItem('actores', JSON.stringify(this.actores));
+
+    }).catch(err => {
+      const local: string|null = localStorage.getItem('actores');
+      if (local) {
+        this.actores = JSON.parse(local);
+      }
+      console.error(err);
+      
+    });
   }
 
   seleccionarActor(nombreActor: string) {
