@@ -5,7 +5,6 @@
         <p class="card-text">Aqui van los controles neceesarios, según la entidad y funcionalidad requerida</p>
       </ng-template>
       <ul *ngIf="pelicula; else templatePelicula">
-        <li>Id: {{ pelicula.id }}</li>
         <li>Nombre: {{ pelicula.nombre }}</li>
         <li>Tipo: {{ pelicula.tipo }}</li>
         <li>Estreno: {{ pelicula.fechaDeEstreno.toDateString() }}</li>

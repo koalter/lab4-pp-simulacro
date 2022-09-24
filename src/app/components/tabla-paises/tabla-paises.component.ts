@@ -19,7 +19,7 @@ export class TablaPaisesComponent implements OnInit {
   ngOnInit(): void {
     const paises: string|null = localStorage.getItem('paises');
     if (!paises) {
-      fetch("https://restcountries.com/v2/all")
+      fetch("https://restcountries.com/v2/all?fields=translations,alpha2Code,flag")
         .then(res => res.json())
         .then(res => {
           for (const item of res) {

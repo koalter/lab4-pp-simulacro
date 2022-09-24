@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pelicula } from 'src/app/models/Pelicula';
+import { PeliculaService } from 'src/app/shared/pelicula.service';
 
 @Component({
   selector: 'app-busqueda',
@@ -11,34 +12,25 @@ export class BusquedaComponent implements OnInit {
   peliculas: Array<Pelicula> = [];
   peliculaSeleccionada!: Pelicula|null;
 
-  constructor() { }
+  constructor(private peliculaService : PeliculaService) { }
 
   ngOnInit(): void {
-    const peliculas: string|null = localStorage.getItem('peliculas');
+    
+    this.peliculaService.getPeliculas().then(res => {
+      this.peliculas = res;
+      localStorage.setItem('peliculas', JSON.stringify(this.peliculas));
 
-    if (!peliculas) {
-      fetch('https://dummyjson.com/users?limit=5')
-        .then(res => res.json())
-        .then(res => {
-          for (const item of res.users) {
-            this.peliculas.push({
-              id: item.id,
-              nombre: item.username,
-              tipo: item.university,
-              publico: item.age,
-              fechaDeEstreno: new Date(item.birthDate),
-              foto: item.image
-            });
-          }
-          localStorage.setItem('peliculas', JSON.stringify(this.peliculas));
-        });
-    } else {
-      this.peliculas = JSON.parse(peliculas);
-    }
+    }).catch(err => {
+      const local: string|null = localStorage.getItem('peliculas');
+      if (local) {
+        this.peliculas = JSON.parse(local);
+      }
+      console.error(err);
+      
+    });
   }
 
   seleccionarPelicula(pelicula: Pelicula): void {
-    console.log(pelicula);
     this.peliculaSeleccionada = pelicula;
   }
 

@@ -5,9 +5,6 @@
         <thead>
             <tr>
                 <th>
-                    <p>Id</p>
-                </th>
-                <th>
                     <p>Nombre</p>
                 </th>
                 <th>
@@ -27,16 +24,13 @@
         <tbody *ngIf="src.length > 0">
             <tr *ngFor="let fila of src" (click)="seleccionarPelicula(fila)">
                 <td>
-                    <p>{{ fila.id }}</p>
-                </td>
-                <td>
                     <p>{{ fila.nombre }}</p>
                 </td>
                 <td>
                     <p>{{ fila.tipo }}</p>
                 </td>
                 <td>
-                    <p>{{ fila.fechaDeEstreno.toDateString() }}</p>
+                    <p>{{ fila.fechaDeEstreno.toLocaleDateString('es-AR') }}</p>
                 </td>
                 <td>
                     <p>{{ fila.publico }}</p>
