@@ -1,9 +1,10 @@
 export class Pelicula {
-    id!: string;
-    nombre: string;
-    fechaDeEstreno: Date;
-    publico: number;
-    foto: string;
+    id! : string;
+    nombre : string;
+    fechaDeEstreno : Date;
+    publico : number;
+    foto : string;
+    actor : string;
     private _tipo: number;
 
     
@@ -12,12 +13,13 @@ export class Pelicula {
     }
     
 
-    constructor(nombre: string, tipo: number, fechaDeEstreno: Date, publico: number, foto: string) {
+    constructor(nombre: string, tipo: number, fechaDeEstreno: Date, publico: number, foto: string, actor: string) {
         this.nombre = nombre;
         this._tipo = tipo;
         this.fechaDeEstreno = fechaDeEstreno;
         this.publico = publico;
         this.foto = foto;
+        this.actor = actor;
     }
 }
 

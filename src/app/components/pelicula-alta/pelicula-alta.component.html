@@ -37,6 +37,10 @@
                     <input class="form-control bg-light" type="text" formControlName="actor" readonly>
                     <small class="text-danger" *ngIf="formulario.controls['actor'].touched && formulario.controls['actor'].errors?.['required']">El país es requerido</small>
                 </div>
+                <div class="form-group col-md-6">
+                    <label for="foto">Foto</label>
+                    <input class="form-control" type="file" formControlName="foto" (change)="generarFoto($event)">
+                </div>
             </div>
             <input type="submit" class="btn btn-primary mb-4" value="Alta película" [disabled]="!formulario.valid">
         </form>

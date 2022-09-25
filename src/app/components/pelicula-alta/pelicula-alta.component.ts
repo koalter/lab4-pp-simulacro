@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Pelicula } from 'src/app/models/Pelicula';
+import { PeliculaService } from 'src/app/shared/pelicula.service';
 
 @Component({
   selector: 'app-pelicula-alta',
@@ -10,15 +11,20 @@ import { Pelicula } from 'src/app/models/Pelicula';
 export class PeliculaAltaComponent implements OnInit {
 
   formulario: FormGroup;
+  archivo: any;
+  nombreArchivo : string;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder,
+    private peliculaService : PeliculaService) { 
+    this.nombreArchivo = '';
     this.formulario = this.formBuilder.group({
       'nombre': ['', Validators.required],
       'tipo': ['', Validators.required],
       'fecha': ['', Validators.required],
       'actor': ['', Validators.required],
-      'publico': ['', Validators.required]
-    })
+      'publico': ['', Validators.required],
+      'foto': ['']
+    });
   }
 
   ngOnInit(): void {
@@ -33,23 +39,19 @@ export class PeliculaAltaComponent implements OnInit {
       this.formulario.controls['tipo'].value,
       this.formulario.controls['fecha'].value,
       this.formulario.controls['publico'].value,
+      this.nombreArchivo,
       this.formulario.controls['actor'].value);
-    
-    this.guardarPelicula(pelicula);
+
+    this.peliculaService.guardarPelicula(pelicula)
+    .then(res => {
+      this.peliculaService.guardarFoto(this.archivo, this.nombreArchivo)
+      .then(res => console.log(res))
+      .catch(err => console.error(err));
+    });
   }
 
   private guardarPelicula(pelicula: Pelicula) {
-    let peliculas = localStorage.getItem('peliculas');
-    const listadoAGuardar: Pelicula[] = [];
-
-    if (peliculas) {
-      listadoAGuardar.push(...JSON.parse(peliculas));
-    }
-    
-    listadoAGuardar.push(pelicula);
-    localStorage.setItem('peliculas', JSON.stringify(listadoAGuardar));
-    
-    this.formulario.reset();
+    console.log(pelicula);
   }
 
   validarNumero(ev: KeyboardEvent): void {
@@ -57,5 +59,17 @@ export class PeliculaAltaComponent implements OnInit {
     if (isNaN(key) && !(ev.key === 'Backspace' || ev.key === 'Delete' || ev.key === 'Tab' || ev.key.startsWith('Arrow'))) {
       ev.preventDefault();
     }
+  }
+
+  generarFoto(event : any) {
+    this.archivo = event.target.files[0];
+    const filename = this.archivo.name.split('.');
+    const ext = filename[filename.length - 1];
+    const objectUrl = URL.createObjectURL(this.archivo).split('/');
+
+    console.log(ext);
+    console.log(objectUrl[objectUrl.length - 1]);
+
+    this.nombreArchivo = `peliculas/${objectUrl[objectUrl.length - 1]}.${ext}`;
   }
 }
