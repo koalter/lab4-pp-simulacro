@@ -1,1 +1,10 @@
-<p>pelicula-listado works!</p>
+<ul>
+    <li *ngFor="let pelicula of src">
+        <strong>Nombre: {{ pelicula.nombre }}</strong>
+        <ul>
+            <li>Tipo: {{ pelicula.tipo }}</li>
+            <li>Estreno: {{ pelicula.fechaDeEstreno.toLocaleDateString() }}</li>
+            <li>Público: {{ pelicula.publico }}</li>
+        </ul>
+    </li>
+</ul>

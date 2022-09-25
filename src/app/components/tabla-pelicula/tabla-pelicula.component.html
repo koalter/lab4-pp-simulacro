@@ -1,7 +1,7 @@
 <div class="p-5 bg-light">
     <div class="container py-5">
       <h1 class="display-5">Listado de elementos</h1>
-      <table class="text-center mb-4">
+      <table *ngIf="modoTabla" class="text-center mb-4">
         <thead>
             <tr>
                 <th>
@@ -40,8 +40,10 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+      </table>
+
+      <pelicula-listado *ngIf="!modoTabla" [src]="this.src"></pelicula-listado>
     
-    <button class="btn btn-primary btn-lg" type="button" (click)="cambiarVista()">cambiar vista</button>
+      <button class="btn btn-primary btn-lg" type="button" (click)="cambiarVista()">cambiar vista</button>
     </div>
 </div>

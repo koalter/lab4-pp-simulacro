@@ -9,8 +9,9 @@ import { PeliculaService } from 'src/app/shared/pelicula.service';
 })
 export class TablaPeliculaComponent implements OnInit {
 
-  @Input() src: Array<Pelicula> = [];
-  @Output() seleccion: EventEmitter<Pelicula> = new EventEmitter<Pelicula>();
+  @Input() src : Array<Pelicula> = [];
+  @Output() seleccion : EventEmitter<Pelicula> = new EventEmitter<Pelicula>();
+  modoTabla : boolean = true;
 
   constructor(private peliculaService : PeliculaService) { }
 
@@ -18,10 +19,10 @@ export class TablaPeliculaComponent implements OnInit {
   }
 
   cambiarVista() {
-    console.log("cambiarVista()");
+    this.modoTabla = !this.modoTabla;
   }
 
-  seleccionarPelicula(pelicula: Pelicula) {
+  seleccionarPelicula(pelicula : Pelicula) {
     this.seleccion.emit(pelicula);
   }
 

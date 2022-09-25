@@ -7,7 +7,7 @@
       <ul *ngIf="pelicula; else templatePelicula">
         <li>Nombre: {{ pelicula.nombre }}</li>
         <li>Tipo: {{ pelicula.tipo }}</li>
-        <li>Estreno: {{ pelicula.fechaDeEstreno.toDateString() }}</li>
+        <li>Estreno: {{ pelicula.fechaDeEstreno.toLocaleDateString() }}</li>
         <li>Publico: {{ pelicula.publico }}</li>
       </ul>
       <button (click)="limpiarDatos()" class="btn btn-dark">limpiar</button>
