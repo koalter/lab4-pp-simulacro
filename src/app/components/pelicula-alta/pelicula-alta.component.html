@@ -44,6 +44,7 @@
             </div>
             <input type="submit" class="btn btn-primary mb-4" value="Alta película" [disabled]="!formulario.valid">
         </form>
-        <tabla-actor class="col-md-3" (seleccion)="seleccionarActor($event)"></tabla-actor>
+        <tabla-actor class="col-md-3" (listo)="cargarSpinner = false" (seleccion)="seleccionarActor($event)"></tabla-actor>
     </div>
 </div>
+<app-spinner [condicion]="cargarSpinner"></app-spinner>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { addDoc, collection, Firestore, getDocs, query } from '@angular/fire/firestore';
-import { ref, Storage, uploadBytes } from '@angular/fire/storage';
+import { getDownloadURL, ref, Storage, uploadBytes } from '@angular/fire/storage';
 import { Pelicula } from '../models/Pelicula';
 import { Logger } from './logger.service';
 
@@ -21,9 +21,13 @@ export class PeliculaService {
     const peliculas : Pelicula[] = [];
     
     querySnapshot.forEach(document => {
-      const data = document.data();      
-      const pelicula = new Pelicula(data['nombre'], data['tipo'], data['fechaDeEstreno'].toDate(), data['publico'], data['foto'], data['actor']);
-      peliculas.push(pelicula);
+      const data = document.data();
+      
+      this.recuperarUrlFoto(data['foto']).then(url => {
+        const foto = url;
+        const pelicula = new Pelicula(data['nombre'], data['tipo'], data['fechaDeEstreno'].toDate(), data['publico'], foto, data['actor']);
+        peliculas.push(pelicula);
+      });
     });
 
     return peliculas.sort(this.sort);
@@ -57,6 +61,15 @@ export class PeliculaService {
       const storageRef = ref(this.storage, nombreArchivo);
       const snapshot = await uploadBytes(storageRef, archivo);
       return nombreArchivo;
+    } catch (err) {
+      this.logger.logError(err);
+      throw err;
+    }
+  }
+
+  async recuperarUrlFoto(uri : string) {
+    try {
+      return await getDownloadURL(ref(this.storage, uri));
     } catch (err) {
       this.logger.logError(err);
       throw err;

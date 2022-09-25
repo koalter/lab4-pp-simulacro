@@ -13,6 +13,7 @@ export class PeliculaAltaComponent implements OnInit {
   formulario: FormGroup;
   archivo: any;
   nombreArchivo : string;
+  cargarSpinner: boolean = true;
 
   constructor(private formBuilder: FormBuilder,
     private peliculaService : PeliculaService) { 
@@ -35,8 +36,9 @@ export class PeliculaAltaComponent implements OnInit {
   }
 
   altaPelicula() {
+    this.cargarSpinner = true;
     const pelicula: Pelicula = new Pelicula(this.formulario.controls['nombre'].value,
-      this.formulario.controls['tipo'].value,
+      parseInt(this.formulario.controls['tipo'].value),
       this.formulario.controls['fecha'].value,
       this.formulario.controls['publico'].value,
       this.nombreArchivo,
@@ -45,13 +47,12 @@ export class PeliculaAltaComponent implements OnInit {
     this.peliculaService.guardarPelicula(pelicula)
     .then(res => {
       this.peliculaService.guardarFoto(this.archivo, this.nombreArchivo)
-      .then(res => console.log(res))
-      .catch(err => console.error(err));
+      .then(res => {
+        this.formulario.reset();
+        this.cargarSpinner = false;
+      })
+      .catch(err => alert(err));
     });
-  }
-
-  private guardarPelicula(pelicula: Pelicula) {
-    console.log(pelicula);
   }
 
   validarNumero(ev: KeyboardEvent): void {
@@ -66,9 +67,6 @@ export class PeliculaAltaComponent implements OnInit {
     const filename = this.archivo.name.split('.');
     const ext = filename[filename.length - 1];
     const objectUrl = URL.createObjectURL(this.archivo).split('/');
-
-    console.log(ext);
-    console.log(objectUrl[objectUrl.length - 1]);
 
     this.nombreArchivo = `peliculas/${objectUrl[objectUrl.length - 1]}.${ext}`;
   }

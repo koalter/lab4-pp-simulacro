@@ -30,6 +30,7 @@
             </div>
             <input type="submit" class="btn btn-primary mb-4" value="Alta actor" [disabled]="!formulario.valid">
         </form>
-        <tabla-paises (seleccion)="seleccionarPais($event)"></tabla-paises>
+        <tabla-paises (listo)="cargarSpinner = false" (seleccion)="seleccionarPais($event)"></tabla-paises>
     </div>
 </div>
+<app-spinner [condicion]="cargarSpinner"></app-spinner>

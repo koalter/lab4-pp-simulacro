@@ -11,6 +11,7 @@ export class BusquedaComponent implements OnInit {
 
   peliculas: Array<Pelicula> = [];
   peliculaSeleccionada!: Pelicula|null;
+  cargarSpinner : boolean = true;
 
   constructor(private peliculaService : PeliculaService) { }
 
@@ -27,7 +28,7 @@ export class BusquedaComponent implements OnInit {
       }
       console.error(err);
       
-    });
+    }).finally(() => this.cargarSpinner = false);
   }
 
   seleccionarPelicula(pelicula: Pelicula): void {

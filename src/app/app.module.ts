@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     TablaPeliculaComponent,
     DetallePeliculaComponent,
     TablaPaisesComponent,
-    TablaActorComponent
+    TablaActorComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

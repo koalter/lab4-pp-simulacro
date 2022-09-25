@@ -11,6 +11,7 @@ import { Actor } from '../../models/Actor';
 export class ActorAltaComponent implements OnInit {
 
   formulario: FormGroup;
+  cargarSpinner: boolean = true;
 
   constructor(private formBuilder : FormBuilder,
     private actorService : ActorService) { 
@@ -19,9 +20,9 @@ export class ActorAltaComponent implements OnInit {
       'apellido': ['', Validators.required],
       'fecha': ['', Validators.required],
       'pais': ['', Validators.required]
-    })
+    });
   }
-
+  
   ngOnInit(): void {
   }
 
@@ -30,6 +31,7 @@ export class ActorAltaComponent implements OnInit {
   }
 
   altaActor() {
+    this.cargarSpinner = true;
     const actor: Actor = new Actor(this.formulario.controls['nombre'].value,
       this.formulario.controls['apellido'].value,
       this.formulario.controls['fecha'].value,
@@ -37,8 +39,8 @@ export class ActorAltaComponent implements OnInit {
     );
 
     this.actorService.guardarActor(actor).then(id => {
-      console.log(id);
       this.formulario.reset();
+      this.cargarSpinner = false;
     }).catch(err => alert(err));
   }
 

@@ -9,10 +9,12 @@ import { Pais } from '../../models/Pais';
 export class TablaPaisesComponent implements OnInit {
 
   @Output() seleccion: EventEmitter<string>;
+  @Output() listo : EventEmitter<boolean>;
   paises: Pais[];
 
   constructor() { 
     this.seleccion = new EventEmitter<string>();
+    this.listo = new EventEmitter<boolean>();
     this.paises = [];
   }
 
@@ -31,6 +33,8 @@ export class TablaPaisesComponent implements OnInit {
     } else {
       this.paises = JSON.parse(paises);
     }
+
+    this.listo.emit(true);
   }
 
   seleccionarPais(nombrePais: string) {

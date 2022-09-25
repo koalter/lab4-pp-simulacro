@@ -10,11 +10,12 @@ import { ActorService } from 'src/app/shared/actor.service';
 export class TablaActorComponent implements OnInit {
 
   @Output() seleccion: EventEmitter<string>;
+  @Output() listo : EventEmitter<boolean>;
   actores: Actor[];
-
 
   constructor(private actorService : ActorService) { 
     this.seleccion = new EventEmitter<string>();
+    this.listo = new EventEmitter<boolean>();
     this.actores = [];
   }
 
@@ -31,7 +32,7 @@ export class TablaActorComponent implements OnInit {
       }
       console.error(err);
       
-    });
+    }).finally(() => this.listo.emit(true));
   }
 
   seleccionarActor(nombreActor: string) {
