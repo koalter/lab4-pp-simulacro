@@ -8,7 +8,7 @@ import { Pelicula } from 'src/app/models/Pelicula';
 })
 export class BorrarPeliculaComponent implements OnInit {
 
-  @Input() pelicula!: Pelicula|null;
+  @Input() pelicula!: Pelicula;
   @Output() borrar: EventEmitter<Pelicula> = new EventEmitter<Pelicula>();
 
   
@@ -18,8 +18,6 @@ export class BorrarPeliculaComponent implements OnInit {
   }
 
   borrarPelicula() {
-    if (this.pelicula) {
-      this.borrar.emit(this.pelicula);
-    }
+    this.borrar.emit(this.pelicula);
   }
 }

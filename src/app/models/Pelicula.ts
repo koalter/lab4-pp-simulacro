@@ -6,6 +6,7 @@ export class Pelicula {
     foto : string;
     actor : string;
     tipo: TipoDePelicula;
+    urlFoto! : string;
 
     public get fecha() : string {
         return this.fechaDeEstreno.toLocaleDateString();

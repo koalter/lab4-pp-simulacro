@@ -40,11 +40,26 @@ export class BusquedaComponent implements OnInit {
   }
 
   borrarPelicula(pelicula : Pelicula) : void {
-    console.log(pelicula);
+    this.cargarSpinner = true;
+    
+    this.peliculaService.borrarPelicula(pelicula)
+    .then(res => {
+      this.cargarSpinner = false;
+      this.peliculaSeleccionada = null;
+      this.ngOnInit();
+    })
+    .catch(err => console.error(err));
   }
 
-  modificarPelicula(pelicula : Pelicula) : void {
-    this.peliculaService.modificarPelicula(pelicula);
-    console.log(pelicula);
+  modificarPelicula(pelicula : Pelicula) {
+    this.cargarSpinner = true;
+
+    this.peliculaService.modificarPelicula(pelicula)
+    .then(res => {
+      this.cargarSpinner = false;
+      this.peliculaSeleccionada = null;
+      this.ngOnInit()
+    })
+    .catch(err => console.error(err));
   }
 }
