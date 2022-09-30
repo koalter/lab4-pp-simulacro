@@ -1,13 +1,13 @@
 <div class="card-body">
-  <h2 class="card-title">Solo mostrar</h2>
+  <h2 class="card-title">Para borrar</h2>
   <ng-template #templatePelicula>
     <p class="card-text">Aqui van los controles neceesarios, según la entidad y funcionalidad requerida</p>
   </ng-template>
   <ul *ngIf="pelicula; else templatePelicula">
     <li>Nombre: {{ pelicula.nombre }}</li>
-    <li>Tipo: {{ pelicula.tipoString }}</li>
+    <li>Tipo: {{ pelicula.tipo }}</li>
     <li>Estreno: {{ pelicula.fechaDeEstreno.toLocaleDateString() }}</li>
     <li>Publico: {{ pelicula.publico }}</li>
   </ul>
-  <button (click)="limpiarDatos()" class="btn btn-dark">limpiar</button>
+  <button (click)="borrarPelicula()" class="btn btn-dark">Borrar</button>
 </div>

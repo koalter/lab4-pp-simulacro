@@ -25,7 +25,7 @@ export class PeliculaService {
       
       this.recuperarUrlFoto(data['foto']).then(url => {
         const foto = url;
-        const pelicula = new Pelicula(data['nombre'], data['tipo'], data['fechaDeEstreno'].toDate(), data['publico'], foto, data['actor']);
+        const pelicula = new Pelicula(document.id, data['nombre'], data['tipo'], data['fechaDeEstreno'].toDate(), data['publico'], foto, data['actor']);
         peliculas.push(pelicula);
       });
     });
@@ -56,6 +56,10 @@ export class PeliculaService {
     }
   }
 
+  modificarPelicula(pelicula : Pelicula) {
+    
+  }
+
   async guardarFoto(archivo : File, nombreArchivo : string) {
     try {
       const storageRef = ref(this.storage, nombreArchivo);
@@ -75,4 +79,5 @@ export class PeliculaService {
       throw err;
     }
   }
+
 }

@@ -16,7 +16,7 @@ export class BusquedaComponent implements OnInit {
   constructor(private peliculaService : PeliculaService) { }
 
   ngOnInit(): void {
-    
+    this.cargarSpinner = true;
     this.peliculaService.getPeliculas().then(res => {
       this.peliculas = res;
       localStorage.setItem('peliculas', JSON.stringify(this.peliculas));
@@ -37,5 +37,14 @@ export class BusquedaComponent implements OnInit {
 
   deseleccionarPelicula(): void {
     this.peliculaSeleccionada = null;
+  }
+
+  borrarPelicula(pelicula : Pelicula) : void {
+    console.log(pelicula);
+  }
+
+  modificarPelicula(pelicula : Pelicula) : void {
+    this.peliculaService.modificarPelicula(pelicula);
+    console.log(pelicula);
   }
 }

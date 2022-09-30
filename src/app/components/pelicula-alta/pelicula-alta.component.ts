@@ -37,7 +37,7 @@ export class PeliculaAltaComponent implements OnInit {
 
   altaPelicula() {
     this.cargarSpinner = true;
-    const pelicula: Pelicula = new Pelicula(this.formulario.controls['nombre'].value,
+    const pelicula: Pelicula = new Pelicula('', this.formulario.controls['nombre'].value,
       parseInt(this.formulario.controls['tipo'].value),
       this.formulario.controls['fecha'].value,
       this.formulario.controls['publico'].value,

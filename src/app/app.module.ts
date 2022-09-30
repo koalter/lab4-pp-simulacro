@@ -11,7 +11,7 @@ import { PeliculaListadoComponent } from './components/pelicula-listado/pelicula
 import { TablaPeliculaComponent } from './components/tabla-pelicula/tabla-pelicula.component';
 import { DetallePeliculaComponent } from './components/detalle-pelicula/detalle-pelicula.component';
 import { TablaPaisesComponent } from './components/tabla-paises/tabla-paises.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TablaActorComponent } from './components/tabla-actor/tabla-actor.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
@@ -19,6 +19,8 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { BorrarPeliculaComponent } from './components/borrar-pelicula/borrar-pelicula.component';
+import { ModificarPeliculaComponent } from './components/modificar-pelicula/modificar-pelicula.component';
 
 @NgModule({
   declarations: [
@@ -32,11 +34,14 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     DetallePeliculaComponent,
     TablaPaisesComponent,
     TablaActorComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    BorrarPeliculaComponent,
+    ModificarPeliculaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

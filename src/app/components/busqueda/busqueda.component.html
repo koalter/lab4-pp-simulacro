@@ -2,8 +2,10 @@
     <tabla-pelicula [src]="peliculas" (seleccion)="seleccionarPelicula($event)"></tabla-pelicula>
 </main>
 
-<section class="container mb-4">
-    <detalle-pelicula [pelicula]="this.peliculaSeleccionada" (limpiar)="deseleccionarPelicula()"></detalle-pelicula>
+<section *ngIf="this.peliculaSeleccionada" class="container row mb-4 my-auto">
+    <borrar-pelicula class="col-4" [pelicula]="this.peliculaSeleccionada" (borrar)="borrarPelicula($event)"></borrar-pelicula>
+    <detalle-pelicula class="col-4" [pelicula]="this.peliculaSeleccionada" (limpiar)="deseleccionarPelicula()"></detalle-pelicula>
+    <modificar-pelicula class="col-4" [pelicula]="this.peliculaSeleccionada" (modificar)="modificarPelicula($event)"></modificar-pelicula>
 </section>
 
 <app-spinner [condicion]="cargarSpinner"></app-spinner>
