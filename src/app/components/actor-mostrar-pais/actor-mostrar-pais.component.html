@@ -1,0 +1,12 @@
+<div class="card-body">
+    <h2 class="card-title">Detalles pais</h2>
+    <ng-template #templatePais>
+      <p class="card-text">Aqui van los controles neceesarios, según la entidad y funcionalidad requerida</p>
+    </ng-template>
+    <ul *ngIf="pais; else templatePais">
+      <li>Bandera: <img [src]="pais.bandera" class="col-6 col-md-4 col-lg-2"></li>
+      <li>Nombre: {{ pais.nombre }}</li>
+      <li>Código: {{ pais.codigo }}</li>
+    </ul>
+    <button (click)="limpiarDatos()" class="btn btn-dark">limpiar</button>
+  </div>

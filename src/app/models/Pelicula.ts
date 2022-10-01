@@ -5,17 +5,27 @@ export class Pelicula {
     publico : number;
     foto : string;
     actor : string;
-    private _tipo: number;
+    tipo: TipoDePelicula;
+    urlFoto! : string;
 
-    
-    public get tipo() : string {
-        return TipoDePelicula[this._tipo];
+    public get fecha() : string {
+        return this.fechaDeEstreno.toLocaleDateString();
     }
-    
 
-    constructor(nombre: string, tipo: number, fechaDeEstreno: Date, publico: number, foto: string, actor: string) {
+    public set fecha(value : string) {
+        this.fechaDeEstreno = new Date(value);
+    }
+
+    public get tipoString() : string {
+        return TipoDePelicula[this.tipo];
+    }
+
+    constructor(id: string, nombre: string, tipo: TipoDePelicula, fechaDeEstreno: Date, publico: number, foto: string, actor: string) {
+        if (id) {
+            this.id = id;
+        }
         this.nombre = nombre;
-        this._tipo = tipo;
+        this.tipo = tipo;
         this.fechaDeEstreno = fechaDeEstreno;
         this.publico = publico;
         this.foto = foto;

@@ -2,8 +2,8 @@
     <li *ngFor="let pelicula of src">
         <strong>Nombre: {{ pelicula.nombre }}</strong>
         <ul>
-            <li>Tipo: {{ pelicula.tipo }}</li>
-            <li>Estreno: {{ pelicula.fechaDeEstreno.toLocaleDateString() }}</li>
+            <li>Tipo: {{ pelicula.tipoString }}</li>
+            <li>Estreno: {{ pelicula.fechaDeEstreno | date : 'dd/MM/yyyy' }}</li>
             <li>Público: {{ pelicula.publico }}</li>
         </ul>
     </li>

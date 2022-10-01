@@ -1,0 +1,8 @@
+<div class="card-body">
+    <h2 class="card-title">Peliculas</h2>
+    <ng-template #templatePelicula>
+      <p class="card-text">Aqui van los controles neceesarios, según la entidad y funcionalidad requerida</p>
+    </ng-template>
+    <pelicula-listado *ngIf="peliculas; else templatePelicula" [src]="peliculas"></pelicula-listado>
+    <button (click)="limpiarDatos()" class="btn btn-dark">limpiar</button>
+  </div>

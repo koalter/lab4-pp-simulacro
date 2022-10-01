@@ -1,0 +1,28 @@
+<div class="card-body">
+  <h2 class="card-title">Modificar</h2>
+  <form [formGroup]="formulario" class="mb-4">
+    <div>
+        <label for="nombre">Nombre: </label>
+        <input type="text" formControlName="nombre" [value]="pelicula.nombre" required>
+    </div>
+    <div>
+        <label for="tipo">Tipo: </label>
+        <select formControlName="tipo" [selectedIndex]="pelicula.tipo" required>
+            <option [value]="0">Terror</option>
+            <option [value]="1">Comedia</option>
+            <option [value]="2">Amor</option>
+            <option [value]="3">Otro</option>
+        </select>
+    </div>
+    <div>
+        <label for="fecha">Estreno: </label>
+        <input type="date" formControlName="fecha" [value]="pelicula.fechaDeEstreno | date: 'yyyy-MM-dd'" 
+         required>
+    </div>
+    <div>
+        <label for="publico">Publico: </label>
+        <input type="text" formControlName="publico" [value]="pelicula.publico" required>
+    </div>
+  </form>
+  <button class="btn btn-dark" (click)="modificarPelicula()">Guardar cambios</button>
+</div>

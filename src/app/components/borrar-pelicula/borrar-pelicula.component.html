@@ -1,0 +1,10 @@
+<div class="card-body">
+  <h2 class="card-title">Para borrar</h2>
+  <ul>
+    <li>Nombre: {{ pelicula.nombre }}</li>
+    <li>Tipo: {{ pelicula.tipoString }}</li>
+    <li>Estreno: {{ pelicula.fechaDeEstreno.toLocaleDateString() }}</li>
+    <li>Publico: {{ pelicula.publico }}</li>
+  </ul>
+  <button (click)="borrarPelicula()" class="btn btn-dark">Borrar</button>
+</div>

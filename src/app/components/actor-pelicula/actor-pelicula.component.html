@@ -1,0 +1,18 @@
+<main>
+    <div class="pt-5 bg-light">
+        <div class="container col-md-6">
+            <h1 class="display-5">Listado de actores</h1>
+            <tabla-actor (seleccion)="seleccionarActor($event)" (listo)="cargarSpinner = false"></tabla-actor>
+        </div>
+    </div>
+</main>
+
+<section *ngIf="actorSeleccionado" class="container">
+    <div class="container row mb-4 my-auto">
+        <actor-mostrar-peliculas class="col-4" [peliculas]="peliculasAsociadas"></actor-mostrar-peliculas>
+        <actor-mostrar-pais class="col-4" [pais]="paisAsociado"></actor-mostrar-pais>
+        <detalle-actor class="col-4" [actor]="actorSeleccionado"></detalle-actor>
+    </div>
+</section>
+
+<app-spinner [condicion]="cargarSpinner"></app-spinner>

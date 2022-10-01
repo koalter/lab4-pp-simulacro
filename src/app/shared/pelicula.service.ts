@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, Firestore, getDocs, query } from '@angular/fire/firestore';
-import { getDownloadURL, ref, Storage, uploadBytes } from '@angular/fire/storage';
+import { addDoc, collection, deleteDoc, doc, Firestore, getDocs, query, updateDoc } from '@angular/fire/firestore';
+import { deleteObject, getDownloadURL, ref, Storage, uploadBytes } from '@angular/fire/storage';
 import { Pelicula } from '../models/Pelicula';
 import { Logger } from './logger.service';
 
@@ -25,7 +25,8 @@ export class PeliculaService {
       
       this.recuperarUrlFoto(data['foto']).then(url => {
         const foto = url;
-        const pelicula = new Pelicula(data['nombre'], data['tipo'], data['fechaDeEstreno'].toDate(), data['publico'], foto, data['actor']);
+        const pelicula = new Pelicula(document.id, data['nombre'], data['tipo'], data['fechaDeEstreno'].toDate(), data['publico'], data['foto'], data['actor']);
+        pelicula.urlFoto = foto;
         peliculas.push(pelicula);
       });
     });
@@ -56,6 +57,36 @@ export class PeliculaService {
     }
   }
 
+  async modificarPelicula(pelicula : Pelicula) {
+    try {
+      await updateDoc(doc(this.firestore, 'peliculas', pelicula.id), {
+        nombre: pelicula.nombre,
+        tipo: pelicula.tipo,
+        publico: pelicula.publico,
+        fechaDeEstreno: new Date(pelicula.fechaDeEstreno),
+        foto: pelicula.foto,
+        actor: pelicula.actor
+      });
+    } catch (err) {
+      this.logger.logError(err);
+      throw err;
+    }
+  }
+
+  async borrarPelicula(pelicula : Pelicula) {
+    try {
+      const docRef = doc(this.firestore, 'peliculas', pelicula.id);
+      const storageRef = ref(this.storage, pelicula.foto);
+
+      await deleteDoc(docRef);
+      await deleteObject(storageRef);
+
+    } catch (err) {
+      this.logger.logError(err);
+      throw err;
+    }
+  }
+
   async guardarFoto(archivo : File, nombreArchivo : string) {
     try {
       const storageRef = ref(this.storage, nombreArchivo);
@@ -75,4 +106,5 @@ export class PeliculaService {
       throw err;
     }
   }
+
 }

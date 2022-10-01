@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, Firestore, getDocs, query } from '@angular/fire/firestore';
-import { ɵINTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic';
+import { addDoc, collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
 import { Actor } from '../models/Actor';
+import { Pais } from '../models/Pais';
+import { Pelicula } from '../models/Pelicula';
 import { Logger } from './logger.service';
 
 @Injectable({
@@ -46,6 +47,38 @@ export class ActorService {
     } catch (err) {
       this.logger.logError(err);
       throw err;
+    }
+  }
+
+  async getPeliculas(actor : Actor) : Promise<Pelicula[]> {
+    const nombreCompleto = `${actor.nombre} ${actor.apellido}`;
+    const q = query(collection(this.firestore, 'peliculas'), where("actor", "==", nombreCompleto));
+    const querySnapshot = await getDocs(q);
+    const peliculas : Pelicula[] = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      peliculas.push(new Pelicula(doc.id, data['nombre'], data['tipo'], data['fechaDeEstreno'].toDate(), data['publico'], data['foto'], nombreCompleto));
+    });
+
+    return peliculas;
+  }
+
+  async getNacionalidad(actor : Actor) : Promise<any> {
+    const paises: string|null = localStorage.getItem('paises');
+    if (!paises) {
+      try {
+        const result = (await (await fetch("https://restcountries.com/v2/name/" + actor.nacionalidad)).json());
+        const pais = new Pais(result.translations['es'], result.flag, result.alpha2Code);
+
+        return pais;
+      } catch (err) {
+        this.logger.logError(err);
+        throw err;
+      }
+    } else {
+      const result : [] = JSON.parse(paises); console.log(result);
+      const pais = result.find(p => p['nombre'] === actor.nacionalidad);
+      return pais;
     }
   }
 }

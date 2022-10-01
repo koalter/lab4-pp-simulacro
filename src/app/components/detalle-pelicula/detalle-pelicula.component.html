@@ -1,15 +1,13 @@
-<div class="p-5 col-md-4">
-    <div class="card-body">
-      <h2 class="card-title">Solo mostrar</h2>
-      <ng-template #templatePelicula>
-        <p class="card-text">Aqui van los controles neceesarios, según la entidad y funcionalidad requerida</p>
-      </ng-template>
-      <ul *ngIf="pelicula; else templatePelicula">
-        <li>Nombre: {{ pelicula.nombre }}</li>
-        <li>Tipo: {{ pelicula.tipo }}</li>
-        <li>Estreno: {{ pelicula.fechaDeEstreno.toLocaleDateString() }}</li>
-        <li>Publico: {{ pelicula.publico }}</li>
-      </ul>
-      <button (click)="limpiarDatos()" class="btn btn-dark">limpiar</button>
-    </div>
+<div class="card-body">
+  <h2 class="card-title">Solo mostrar</h2>
+  <ng-template #templatePelicula>
+    <p class="card-text">Aqui van los controles neceesarios, según la entidad y funcionalidad requerida</p>
+  </ng-template>
+  <ul *ngIf="pelicula; else templatePelicula">
+    <li>Nombre: {{ pelicula.nombre }}</li>
+    <li>Tipo: {{ pelicula.tipoString }}</li>
+    <li>Estreno: {{ pelicula.fechaDeEstreno.toLocaleDateString() }}</li>
+    <li>Publico: {{ pelicula.publico }}</li>
+  </ul>
+  <button (click)="limpiarDatos()" class="btn btn-dark">limpiar</button>
 </div>
