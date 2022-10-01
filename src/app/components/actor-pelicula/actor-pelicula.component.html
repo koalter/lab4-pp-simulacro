@@ -7,15 +7,12 @@
     </div>
 </main>
 
-<section *ngIf="this.actorSeleccionado" class="container">
+<section *ngIf="actorSeleccionado" class="container">
     <div class="container row mb-4 my-auto">
-        <actor-mostrar-peliculas class="col-4" [actor]="this.actorSeleccionado"></actor-mostrar-peliculas>
-        <actor-mostrar-pais class="col-4"></actor-mostrar-pais>
-        <detalle-actor class="col-4" [actor]="this.actorSeleccionado"></detalle-actor>
+        <actor-mostrar-peliculas class="col-4" [peliculas]="peliculasAsociadas"></actor-mostrar-peliculas>
+        <actor-mostrar-pais class="col-4" [pais]="paisAsociado"></actor-mostrar-pais>
+        <detalle-actor class="col-4" [actor]="actorSeleccionado"></detalle-actor>
     </div>
-    <!-- <borrar-pelicula class="col-4" [pelicula]="this.actorSeleccionado" (borrar)="borrarPelicula($event)"></borrar-pelicula>
-    <detalle-pelicula class="col-4" [pelicula]="this.actorSeleccionado" (limpiar)="deseleccionarPelicula()"></detalle-pelicula>
-    <modificar-pelicula class="col-4" [pelicula]="this.actorSeleccionado" (modificar)="modificarPelicula($event)"></modificar-pelicula> -->
 </section>
 
 <app-spinner [condicion]="cargarSpinner"></app-spinner>

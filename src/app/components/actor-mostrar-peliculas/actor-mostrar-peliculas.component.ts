@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Actor } from 'src/app/models/Actor';
+import { Pelicula } from 'src/app/models/Pelicula';
 
 @Component({
   selector: 'actor-mostrar-peliculas',
@@ -8,7 +8,7 @@ import { Actor } from 'src/app/models/Actor';
 })
 export class ActorMostrarPeliculasComponent implements OnInit {
 
-  @Input() actor! : Actor;
+  @Input() peliculas! : Pelicula[];
   @Output() limpiar : EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }

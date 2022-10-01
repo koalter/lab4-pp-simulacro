@@ -1,12 +1,8 @@
 <div class="card-body">
     <h2 class="card-title">Peliculas</h2>
-    <ng-template #templateActor>
+    <ng-template #templatePelicula>
       <p class="card-text">Aqui van los controles neceesarios, según la entidad y funcionalidad requerida</p>
     </ng-template>
-    <ul *ngIf="actor; else templateActor">
-      <li>Nombre: {{ actor.nombre }} {{ actor.apellido }}</li>
-      <li>Fecha de Nacimiento: {{ actor.fechaDeNacimiento.toLocaleDateString() }}</li>
-      <li>Pais: {{ actor.nacionalidad }}</li>
-    </ul>
+    <pelicula-listado *ngIf="peliculas; else templatePelicula" [src]="peliculas"></pelicula-listado>
     <button (click)="limpiarDatos()" class="btn btn-dark">limpiar</button>
   </div>
