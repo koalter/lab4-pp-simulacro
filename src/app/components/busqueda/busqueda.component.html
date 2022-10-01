@@ -1,11 +1,17 @@
 <main>
-    <tabla-pelicula [src]="peliculas" (seleccion)="seleccionarPelicula($event)"></tabla-pelicula>
+    <div class="py-5 bg-light">
+        <div class="container">
+            <tabla-pelicula [src]="peliculas" (seleccion)="seleccionarPelicula($event)"></tabla-pelicula>
+        </div>
+    </div>
 </main>
 
-<section *ngIf="this.peliculaSeleccionada" class="container row mb-4 my-auto">
-    <borrar-pelicula class="col-4" [pelicula]="this.peliculaSeleccionada" (borrar)="borrarPelicula($event)"></borrar-pelicula>
-    <detalle-pelicula class="col-4" [pelicula]="this.peliculaSeleccionada" (limpiar)="deseleccionarPelicula()"></detalle-pelicula>
-    <modificar-pelicula class="col-4" [pelicula]="this.peliculaSeleccionada" (modificar)="modificarPelicula($event)"></modificar-pelicula>
+<section *ngIf="this.peliculaSeleccionada" class="container">
+        <div class="container row mb-4 my-auto">
+        <borrar-pelicula class="col-4" [pelicula]="this.peliculaSeleccionada" (borrar)="borrarPelicula($event)"></borrar-pelicula>
+        <detalle-pelicula class="col-4" [pelicula]="this.peliculaSeleccionada" (limpiar)="deseleccionarPelicula()"></detalle-pelicula>
+        <modificar-pelicula class="col-4" [pelicula]="this.peliculaSeleccionada" (modificar)="modificarPelicula($event)"></modificar-pelicula>
+    </div>
 </section>
 
 <app-spinner [condicion]="cargarSpinner"></app-spinner>

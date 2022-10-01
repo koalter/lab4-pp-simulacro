@@ -1,49 +1,45 @@
-<div class="p-5 bg-light">
-    <div class="container py-5">
-      <h1 class="display-5">Listado de elementos</h1>
-      <table *ngIf="modoTabla" class="text-center mb-4">
-        <thead>
-            <tr>
-                <th>
-                    <p>Nombre</p>
-                </th>
-                <th>
-                    <p>Tipo</p>
-                </th>
-                <th>
-                    <p>Fecha de Estreno</p>
-                </th>
-                <th>
-                    <p>Publico</p>
-                </th>
-                <th>
-                    <p>Foto</p>
-                </th>
-            </tr>
-        </thead>
-        <tbody *ngIf="src.length > 0">
-            <tr *ngFor="let fila of src" (click)="seleccionarPelicula(fila)">
-                <td>
-                    <p>{{ fila.nombre }}</p>
-                </td>
-                <td>
-                    <p>{{ fila.tipoString }}</p>
-                </td>
-                <td>
-                    <p>{{ fila.fechaDeEstreno.toLocaleDateString('es-AR') }}</p>
-                </td>
-                <td>
-                    <p>{{ fila.publico }}</p>
-                </td>
-                <td>
-                    <img [src]="fila.urlFoto" alt="Foto de la película">
-                </td>
-            </tr>
-        </tbody>
-      </table>
+<h1 class="display-5">Listado de peliculas</h1>
+<table *ngIf="modoTabla" class="text-center mb-4">
+  <thead>
+      <tr>
+          <th>
+              <p>Nombre</p>
+          </th>
+          <th>
+              <p>Tipo</p>
+          </th>
+          <th>
+              <p>Fecha de Estreno</p>
+          </th>
+          <th>
+              <p>Publico</p>
+          </th>
+          <th>
+              <p>Foto</p>
+          </th>
+      </tr>
+  </thead>
+  <tbody *ngIf="src.length > 0">
+      <tr *ngFor="let fila of src" (click)="seleccionarPelicula(fila)">
+          <td>
+              <p>{{ fila.nombre }}</p>
+          </td>
+          <td>
+              <p>{{ fila.tipoString }}</p>
+          </td>
+          <td>
+              <p>{{ fila.fechaDeEstreno.toLocaleDateString('es-AR') }}</p>
+          </td>
+          <td>
+              <p>{{ fila.publico }}</p>
+          </td>
+          <td>
+              <img [src]="fila.urlFoto" alt="Foto de la película">
+          </td>
+      </tr>
+  </tbody>
+</table>
 
-      <pelicula-listado *ngIf="!modoTabla" [src]="this.src"></pelicula-listado>
-    
-      <button class="btn btn-primary btn-lg" type="button" (click)="cambiarVista()">cambiar vista</button>
-    </div>
-</div>
+<pelicula-listado *ngIf="!modoTabla" [src]="this.src"></pelicula-listado>
+
+<button class="btn btn-primary btn-lg" type="button" (click)="cambiarVista()">cambiar vista</button>

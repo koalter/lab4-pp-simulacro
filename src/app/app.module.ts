@@ -21,6 +21,10 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { BorrarPeliculaComponent } from './components/borrar-pelicula/borrar-pelicula.component';
 import { ModificarPeliculaComponent } from './components/modificar-pelicula/modificar-pelicula.component';
+import { ActorPeliculaComponent } from './components/actor-pelicula/actor-pelicula.component';
+import { ActorMostrarPeliculasComponent } from './components/actor-mostrar-peliculas/actor-mostrar-peliculas.component';
+import { ActorMostrarPaisComponent } from './components/actor-mostrar-pais/actor-mostrar-pais.component';
+import { DetalleActorComponent } from './components/detalle-actor/detalle-actor.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { ModificarPeliculaComponent } from './components/modificar-pelicula/modi
     TablaActorComponent,
     SpinnerComponent,
     BorrarPeliculaComponent,
-    ModificarPeliculaComponent
+    ModificarPeliculaComponent,
+    ActorPeliculaComponent,
+    ActorMostrarPeliculasComponent,
+    ActorMostrarPaisComponent,
+    DetalleActorComponent
   ],
   imports: [
     BrowserModule,

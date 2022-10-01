@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Actor } from 'src/app/models/Actor';
 import { Pelicula } from 'src/app/models/Pelicula';
 import { PeliculaService } from 'src/app/shared/pelicula.service';
 
@@ -31,8 +32,8 @@ export class PeliculaAltaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  seleccionarActor(actor: string): void {
-    this.formulario.controls['actor'].setValue(actor);
+  seleccionarActor(actor: Actor): void {
+    this.formulario.controls['actor'].setValue(`${actor.nombre} ${actor.apellido}`);
   }
 
   altaPelicula() {
